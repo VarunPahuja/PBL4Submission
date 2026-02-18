@@ -13,9 +13,6 @@
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
-        @keyframes flicker { 0%, 100% { background-color: #ffffff; } 50% { background-color: #fca5a5; } }
-        .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
-        .timer-stop { background-color: #991b1b !important; color: #ffffff !important; border: 3px solid #f87171 !important; animation: none; }
     </style>
 </head>
 <body onload="startTimer()">
@@ -39,6 +36,15 @@
             </span>
         </div>
     </div>
+
+    <!-- RESTORED NAV -->
+    <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
+        <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
+        <a href="#architecture" class="hover:text-blue-400 transition">Architecture</a>
+        <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
+        <a href="#results" class="hover:text-blue-400 transition">Results</a>
+        <a href="#team" class="hover:text-blue-400 transition">Team</a>
+    </div>
 </nav>
 
 <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
@@ -55,7 +61,7 @@
     </p>
 </section>
 
-<section class="glass p-10 rounded-[2.5rem] border-l-4 border-blue-600">
+<section id="problem" class="glass p-10 rounded-[2.5rem] border-l-4 border-blue-600">
     <h2 class="text-3xl font-extrabold mb-6">Problem Statement</h2>
     <p class="text-slate-400 leading-relaxed text-justify">
         Most online nutrition platforms provide generic dietary advice that does not consider individual health conditions, goals, or activity levels.
@@ -63,21 +69,20 @@
     </p>
 </section>
 
-<section class="space-y-12">
+<!-- ADDED IMPROVED ARCHITECTURE (WITHOUT REMOVING ANYTHING ELSE) -->
+<section id="architecture" class="space-y-12">
     <h2 class="text-4xl font-black text-center uppercase tracking-tight">
         System <span class="text-blue-500">Architecture</span>
     </h2>
 
     <div class="flex flex-col items-center space-y-6 text-sm text-slate-300">
 
-        <!-- User -->
         <div class="glass px-8 py-4 rounded-2xl border border-blue-500/40 text-center font-semibold">
             User
         </div>
 
         <div class="text-blue-500 text-2xl">↓</div>
 
-        <!-- Frontend -->
         <div class="glass px-10 py-6 rounded-2xl border border-purple-500/40 text-center">
             <p class="font-bold text-purple-400">React Frontend</p>
             <p class="text-xs text-slate-400">(Vite + GitHub Pages)</p>
@@ -85,19 +90,15 @@
 
         <div class="text-blue-500 text-2xl">↓</div>
 
-        <!-- Backend -->
         <div class="glass px-10 py-6 rounded-2xl border border-green-500/40 text-center">
             <p class="font-bold text-green-400">FastAPI Backend</p>
         </div>
 
-        <!-- Split -->
         <div class="flex items-start justify-center gap-16 mt-4">
-
             <div class="flex flex-col items-center">
                 <div class="text-blue-500 text-2xl">↙</div>
                 <div class="glass px-8 py-5 rounded-2xl border border-blue-400/30 text-center">
-                    <p class="font-bold text-blue-400">ML Model</p>
-                    <p class="text-xs text-slate-400">(.joblib - Multi-output Regression)</p>
+                    <p class="font-bold text-blue-400">ML Model (.joblib)</p>
                 </div>
             </div>
 
@@ -105,54 +106,64 @@
                 <div class="text-blue-500 text-2xl">↘</div>
                 <div class="glass px-8 py-5 rounded-2xl border border-purple-400/30 text-center">
                     <p class="font-bold text-purple-400">OpenRouter LLM</p>
-                    <p class="text-xs text-slate-400">(Mistral Model)</p>
                 </div>
             </div>
-
         </div>
 
         <div class="text-blue-500 text-2xl mt-4">↓</div>
 
-        <!-- Response -->
         <div class="glass px-10 py-6 rounded-2xl border border-slate-600 text-center">
             <p class="font-bold text-slate-200">Structured JSON Response</p>
-            <p class="text-xs text-slate-400">Summary • Recommendations • Cautions</p>
         </div>
 
     </div>
 </section>
 
-
-<section class="space-y-12">
+<section id="methodology" class="space-y-12">
     <h2 class="text-4xl font-black text-center uppercase tracking-tight">
         Technical <span class="text-blue-500">Methodology</span>
     </h2>
+
     <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- User Profiling -->
         <div class="glass p-8 rounded-3xl text-center">
             <i class="fas fa-database text-blue-500 text-3xl mb-4"></i>
-            <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">User Profiling</h3>
+            <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">
+                User Profiling
+            </h3>
             <p class="text-sm text-slate-500">
                 Structured input collection: Age, Weight, Activity Level, Goal, Health Conditions.
             </p>
         </div>
+
+        <!-- ML Prediction -->
         <div class="glass p-8 rounded-3xl text-center">
             <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
-            <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">ML Prediction</h3>
+            <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">
+                ML Prediction
+            </h3>
             <p class="text-sm text-slate-500">
                 Multi-output regression model predicting Calories, Protein, Carbs, and Fat.
             </p>
         </div>
+
+        <!-- LLM Integration -->
         <div class="glass p-8 rounded-3xl text-center">
             <i class="fas fa-robot text-green-500 text-3xl mb-4"></i>
-            <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">LLM Integration</h3>
+            <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">
+                LLM Integration
+            </h3>
             <p class="text-sm text-slate-500">
-                OpenRouter Mistral model with structured prompt engineering and response parsing.
+                OpenRouter Mistral model with structured prompt engineering and backend response parsing.
             </p>
         </div>
+
     </div>
 </section>
 
-<section class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
+
+<section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
     <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">
         Results & <span class="text-blue-500">Analysis</span>
     </h2>
@@ -163,37 +174,56 @@
         <div class="space-y-6">
             <div class="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-inner">
                 <p class="text-slate-400 text-sm leading-relaxed">
-                    Average ML Prediction Accuracy ≈ 70% across macro targets.
-                    Model trained using ensemble techniques and serialized via joblib.
+                    Average ML Prediction Accuracy ≈ 70% across macro targets. Model trained using ensemble techniques and serialized via joblib.
                 </p>
             </div>
-            <p class="text-slate-500 text-sm italic text-justify leading-relaxed">
-                The system successfully integrates frontend UI, FastAPI backend, ML model inference, and external LLM processing into a structured AI-assisted nutrition guidance platform.
-            </p>
             <p class="text-red-400 text-xs italic mt-4">
-                *This system provides AI-assisted guidance and is not a substitute for professional medical advice.*
+                *AI-assisted system. Not a substitute for professional medical advice.*
             </p>
         </div>
     </div>
 </section>
 
+<!-- ADDED TECHNICAL CONTRIBUTIONS -->
 <section class="glass p-10 rounded-3xl">
     <h2 class="text-3xl font-extrabold mb-6 text-center">Technical Contributions</h2>
     <ul class="text-slate-400 text-sm space-y-3 list-disc list-inside">
-        <li>Multi-output regression for simultaneous macro prediction.</li>
-        <li>Deployment-safe ML model loading using pathlib.</li>
-        <li>Backend-based LLM integration for API key security.</li>
-        <li>Structured prompt engineering with response post-processing.</li>
-        <li>Environment-based configuration for production deployment.</li>
+        <li>Multi-output regression for macro prediction</li>
+        <li>Backend-based secure LLM integration</li>
+        <li>Structured response parsing for UI consistency</li>
+        <li>Environment-based production configuration</li>
     </ul>
 </section>
 
-<section class="text-center pt-10 border-t border-slate-900">
-    <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
-    <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700 inline-block">
-        <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Team Member</p>
-        <p class="font-black text-xl text-slate-100">Varun Pahuja</p>
-        <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00216</p>
+<!-- RESTORED MENTOR -->
+<section id="team" class="text-center pt-10 border-t border-slate-900">
+    <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">
+        Academic Credits
+    </h2>
+
+    <div class="flex flex-wrap justify-center gap-10">
+
+        <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
+            <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">
+                Project Guide
+            </p>
+            <p class="font-black text-xl text-slate-100">
+                Dr Sayar Singh Shekhawat
+            </p>
+        </div>
+
+        <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+            <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">
+                Team Member
+            </p>
+            <p class="font-black text-xl text-slate-100">
+                Varun Pahuja
+            </p>
+            <p class="text-[10px] text-slate-500 mt-1">
+                23FE10CSE00216
+            </p>
+        </div>
+
     </div>
 </section>
 
@@ -229,8 +259,7 @@ new Chart(ctx, {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-            y: { beginAtZero: true, max: 100, grid: { color: '#ffffff05' }, ticks: { color: '#475569' } },
-            x: { grid: { display: false }, ticks: { color: '#475569' } }
+            y: { beginAtZero: true, max: 100 }
         }
     }
 });
